@@ -23,7 +23,7 @@ https://connectio-lmvg.onrender.com
 -   **Email Invites**: Send direct meeting invitations with one click.
 -   **Responsive Design**: Optimized for different screen sizes using Bootstrap and custom CSS.
 
-## 🌐 Deployment
+##  Deployment
 
 ConnectIO is deployed on **Render** with full production configuration:
 
