@@ -4,6 +4,14 @@ A powerful, real-time video conferencing application built with the **MERN stack
 
 This project demonstrates advanced full-stack development skills including real-time data streaming, event-driven architecture, and secure authentication.
 
+## Live Demo
+
+🔗 **ConnectIO (Production Deployment):**  
+https://connectio-lmvg.onrender.com
+
+> Note: The app may take up to 30–50 seconds to load on first visit due to free-tier server sleep.
+
+
 ## Features
 
 -   **Video & Audio Conferencing**: High-quality, low-latency multi-user calls using WebRTC mesh networking.
@@ -14,6 +22,22 @@ This project demonstrates advanced full-stack development skills including real-
 -   **Screen Sharing**: Share your screen with all participants in real-time.
 -   **Email Invites**: Send direct meeting invitations with one click.
 -   **Responsive Design**: Optimized for different screen sizes using Bootstrap and custom CSS.
+
+## 🌐 Deployment
+
+ConnectIO is deployed on **Render** with full production configuration:
+
+-  **Google OAuth 2.0** authentication
+-  **HTTPS-secured** sessions
+-  **Socket.IO** for real-time signaling & chat
+-  **WebRTC (PeerJS)** for audio/video streaming
+-  **Nodemailer** for email invitations
+-  Reverse proxy handling for production OAuth compatibility
+
+**Hosting Platform:** Render  
+**Server:** Node.js + Express  
+**Auth Provider:** Google OAuth 2.0
+
 
 ## Tech Stack
 
