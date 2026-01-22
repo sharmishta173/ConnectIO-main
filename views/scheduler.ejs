@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Meeting</title>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script>
+      const id = "<%= meetid %>";
+      const senderName = "<%= user && user.displayName ? user.displayName : 'A Colleague' %>";
+    </script>
+    <script src="scheduler.js" defer></script>
+    <link rel="stylesheet" href="/public/scheduler.css">
+  </head>
+  <body>
+    <div class="main">
+      <h3>📅 Meeting Link: <%= meetid %></h3>
+      <form>
+        <label for="subject">📝 Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Enter meeting subject" required />
+
+        <label for="to">📧 Recipient Email</label>
+        <input type="text" id="to" name="to" placeholder="example@email.com" required />
+
+        <label for="time">🕐 Meeting Time</label>
+        <input type="time" id="time" name="time" required />
+
+        <input type="submit" id="submit" value="Schedule Meeting" />
+        <button type="button" class="close-btn" onclick="window.close()">Close</button>
+      </form>
+    </div>
+  </body>
+</html>

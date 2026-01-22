@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConnectIO</title>
+    <link rel="stylesheet" href="/public/landing.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="Name-Page">
+        <h1>Welcome to ConnectIO</h1>
+        
+        <% if (user) { %>
+            <div class="form">
+                <h3>Hello, <%= user.displayName %>!</h3>
+                <p>You are logged in.</p>
+                <form action="/join" method="get">
+                    <button>New Meeting</button>
+                </form>
+                <br>
+                <form action="/joinold" method="get" style="margin-top: 10px;">
+                    <input type="text" placeholder="Enter Meeting ID" name="meeting_id" required />
+                    <button>Join Meeting</button>
+                </form>
+                <p><a href="/logout" style="color: #ff006e;">Logout</a></p>
+            </div>
+        <% } else { %>
+            <!-- This part should theoretically not be reached if isLoggedIn middleware protects the route, 
+                 but good for fallback or if we make the home page public -->
+            <div class="form">
+                <form class="known-form" action="/auth/google">
+                    <p>Please sign in to continue</p>
+                    <button>Sign in with Google</button>
+                </form>
+            </div>
+        <% } %>
+    </div>
+    <script>
+        function show() {
+            $('form').animate({ height:"toggle",opacity:"toggle"},"slow")
+        }
+    </script>
+</body>
+
+</html>

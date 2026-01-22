@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting Whiteboard</title>
+    <link rel="stylesheet" href="/public/whiteboard.css">
+  </head>
+  <body>
+    <div class="toolbar">
+      <!-- Color Selection -->
+      <div class="toolbar-group">
+        <label class="toolbar-label">🎨 Colors</label>
+        <div class="color-picker">
+          <div class="color-option active" style="background-color: #000000;" onclick="changeColor('#000000'); selectColor(this);" title="Black"></div>
+          <div class="color-option" style="background-color: #FF0000;" onclick="changeColor('#FF0000'); selectColor(this);" title="Red"></div>
+          <div class="color-option" style="background-color: #00FF00;" onclick="changeColor('#00FF00'); selectColor(this);" title="Green"></div>
+          <div class="color-option" style="background-color: #0000FF;" onclick="changeColor('#0000FF'); selectColor(this);" title="Blue"></div>
+          <div class="color-option" style="background-color: #FFFF00;" onclick="changeColor('#FFFF00'); selectColor(this);" title="Yellow"></div>
+          <div class="color-option" style="background-color: #FF00FF;" onclick="changeColor('#FF00FF'); selectColor(this);" title="Magenta"></div>
+          <div class="color-option" style="background-color: #00FFFF;" onclick="changeColor('#00FFFF'); selectColor(this);" title="Cyan"></div>
+          <div class="color-option" style="background-color: #9d4edd;" onclick="changeColor('#9d4edd'); selectColor(this);" title="Purple"></div>
+          <input type="color" id="colorInput" value="#000000" onchange="handleColorInput(this.value);" title="Custom Color">
+        </div>
+      </div>
+      
+      <!-- Line Width Selection -->
+      <div class="toolbar-group">
+        <label class="toolbar-label">✏️ Brush Size</label>
+        <div class="slider-container">
+          <input type="range" id="lineWidth" min="1" max="20" value="2" onchange="changeLineWidth(this.value);" oninput="changeLineWidth(this.value);" title="Adjust brush thickness">
+          <span class="line-width-display"><span id="widthValue">2</span>px</span>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="toolbar-group">
+        <div class="button-group">
+          <button id="clearBtn" onclick="clearCanvas();">Clear</button>
+          <button id="closeBtn" onclick="window.close();">Close</button>
+        </div>
+      </div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const roomId = "<%= roomId %>";
+    </script>
+    <script>
+      function selectColor(element) {
+        // Remove active class from all color options
+        document.querySelectorAll('.color-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        // Add active class to clicked element
+        element.classList.add('active');
+      }
+      
+      function handleColorInput(color) {
+        changeColor(color);
+        // Update the active state
+        document.querySelectorAll('.color-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        document.getElementById('colorInput').style.border = '3px solid #000';
+      }
+      
+      document.getElementById('lineWidth').addEventListener('change', function() {
+        document.getElementById('widthValue').textContent = this.value;
+      });
+      
+      document.getElementById('lineWidth').addEventListener('input', function() {
+        document.getElementById('widthValue').textContent = this.value;
+        changeLineWidth(this.value);
+      });
+    </script>
+    
+    <script src="/public/board.js"></script>
+  </body>
+</html>
